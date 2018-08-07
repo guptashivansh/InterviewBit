@@ -8,36 +8,40 @@ int main()
 {
     int n;
     cin>>n;
-    pretty_print(n);
+    vector<vector<int> > ans;
+    ans = pretty_print(n);
+    for(int i=0;i<ans.size();i++)
+    {
+        for(int j=0;j<ans[i].size();j++)
+        {
+            cout<<ans[i][j]<<" ";
+        }
+        cout<<endl;
+    }
     return 0;
 }
 
 
 vector<vector<int> > pretty_print(int n)
 {
-    vector<int> a;
-    vector<vector<int> > b;
-    int x=n,flag=0;
-    for(int i=0;i<((n*2)-1);i++)
+    int sized = (2*n)-1;
+    vector<int> row;
+    vector< vector<int> > b(sized,vector<int>(sized));
+    //cout<<b.size()<<" "<<b[0].size()<<endl;
+    int limit=sized,temp=0;
+    while(n>0)
     {
-        a.push_back(x);
-        if(x==1)
+        for(int i=temp;i<limit;i++)
         {
-            flag=1;
-        }
-        if(flag == 1)
-        {
-            x=x+1;
-        }
-        else
-        {
-            x=x-1;
-        }
+            for(int j=temp;j<limit;j++)
+            {
+                b[i][j]=n;
 
-    }
-    for(int i=0;i<((n*2)-1);i++)
-    {
-        cout<<a[i]<<endl;
+            }
+        }
+        n--;
+        limit--;
+        temp++;
     }
     return b;
 }
