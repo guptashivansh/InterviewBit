@@ -17,20 +17,28 @@ int main()
 
 int powe(int x,int n,int d)
 {
-    int power=1;
-    int ans;
-    x=x%d;
-    n=n%d;
-    power=x*n;
-    if(power<0)
+    int ans=1;
+    int square=x;
+    if(x==0)
     {
-        ans=abs(power)%d;
-        ans=d-ans;
+        return 0;
     }
-    else
+    if(n==0)
     {
-        ans=power%d;
+        return 1;
     }
-
+    while(n>0)
+    {
+        if(n%2)
+        {
+            ans=ans*square;
+        }
+        square=(square*square)%d;
+        n=n/2;
+        if(ans>d)
+        {
+            ans=ans%d;
+        }
+    }
     return ans;
 }
